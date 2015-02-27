@@ -19,6 +19,12 @@ Which, after a delay of some minutes, resulted in :
  * Install node (0.10.31) ... done.
 `
 
+To activate the new "inner" virtenv I executed : 
+
+`
+source nenv/bin/activate
+`
+
 Then I installed a 'nodeschool' module as follows:
 
 `npm install -g learnyounode`
