@@ -18,6 +18,7 @@ Which, after a delay of some minutes, resulted in :
 (nodeenv)rshea@jaffa:~/dev/nodetut$ nodeenv --node=0.10.31 nenv
  * Install node (0.10.31) ... done.
 `
+
 Then I installed a 'nodeschool' module as follows:
 
 `npm install -g learnyounode`
