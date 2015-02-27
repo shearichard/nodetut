@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH=/home/rshea/dev/nodetut/nenv/lib/node_modules
+export NPM_CONFIG_PREFIX=/home/rshea/dev/nodetut/nenv
+export npm_config_prefix=/home/rshea/dev/nodetut/nenv
+exec nenv/bin/node "$@"
