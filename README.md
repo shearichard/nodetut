@@ -19,6 +19,14 @@ Which, after a delay of some minutes, resulted in :
  * Install node (0.10.31) ... done.
 `
 
+At a later date I realised that I needed a more recent release of Node so I did the following :
+
+`
+(nodeenv)rshea@jaffa:~/dev/nodetut$ nodeenv --node=0.12.0 nenv12
+`
+
+And so produced an alternate "inner" virtenv `nenv12` .
+
 To activate the new "inner" virtenv I executed : 
 
 `
