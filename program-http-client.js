@@ -21,10 +21,9 @@ function getHttpRequest(targetUrl, callback) {
         response.on('end', function() {
             callback(null, arrOut);
         });
-    });
-
-    req.on('error', function(e) {
-        console.log("Got error: " + e.message);
+        response.on('error', function(err) {
+            callback(err);
+        });
     });
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
