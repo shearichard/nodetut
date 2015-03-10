@@ -10,26 +10,23 @@ function dumpReturn(err, theArr){
     }
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-function httpGetHandler(response, callback){
+function getHttpRequest(targetUrl, callback) {
     var arrOut = [];
 
-    response.on('data', function(d) {
-        arrOut.push(d)
+    var req = http.get(targetUrl, function(response){
+        response.setEncoding('utf8');
+        response.on('data', function(d) {
+            arrOut.push(d)
+        });
+        response.on('end', function() {
+            callback(null, arrOut);
+        });
     });
 
-    response.on('end', function() {
-        callback(null, arrOut);
+    req.on('error', function(e) {
+        console.log("Got error: " + e.message);
     });
-
-    response.on('error', function(err) {
-        callback(err);
-    });
-}
-//+++++++++++++++++++++++++++++++++++++++++++++++++++
-function getHttpRequest(targetUrl, callback) {
-    http.get(targetUrl, httpGetHandler(response, callback));
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
 var theUrl = process.argv[2];
-
 getHttpRequest(theUrl, dumpReturn);
