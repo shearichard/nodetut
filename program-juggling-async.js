@@ -1,25 +1,37 @@
 //****************************************************************
 var http = require('http');
+
+var masterArray = new Array(); 
+var endPointsSeen = 0;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
 function dumpReturn(err, theArr){
     if (err){
         throw err;
     }
-
     var strOut = "";
+    var srcId = theArr[0].srcid;
+
     for (var i = 0; i < theArr.length; i++) {
-        strOut = strOut.concat(theArr[i]);
+        strOut = strOut.concat(theArr[i].data);
     }
-    console.log(strOut);
+    masterArray[srcId] = strOut
+    endPointsSeen += 1;
+    //console.log(endPointsSeen);
+
+    if (endPointsSeen == 3){
+        for (var i = 0; i < endPointsSeen; i++) {
+            console.log(masterArray[i]);
+        }
+    }
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-function getHttpRequest(targetUrl, callback) {
+function getHttpRequest(srcId, targetUrl, callback) {
     var arrOut = [];
 
     var req = http.get(targetUrl, function(response){
         response.setEncoding('utf8');
         response.on('data', function(d) {
-            arrOut.push(d)
+            arrOut.push({'srcid': srcId, 'data': d})
         });
         response.on('end', function() {
             callback(null, arrOut);
@@ -30,6 +42,6 @@ function getHttpRequest(targetUrl, callback) {
     });
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-getHttpRequest(process.argv[2], dumpReturn);
-getHttpRequest(process.argv[3], dumpReturn);
-getHttpRequest(process.argv[4], dumpReturn);
+getHttpRequest(0, process.argv[2], dumpReturn);
+getHttpRequest(1, process.argv[3], dumpReturn);
+getHttpRequest(2, process.argv[4], dumpReturn);
