@@ -4,19 +4,17 @@ var http = require('http');
 var masterArray = new Array(); 
 var endPointsSeen = 0;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-function dumpReturn(err, theArr){
+function dumpReturn(err, theArr, srcId){
     if (err){
         throw err;
     }
-    var strOut = "";
-    var srcId = theArr[0].srcid;
 
+    var strOut = "";
     for (var i = 0; i < theArr.length; i++) {
-        strOut = strOut.concat(theArr[i].data);
+        strOut = strOut.concat(theArr[i]);
     }
     masterArray[srcId] = strOut
     endPointsSeen += 1;
-    //console.log(endPointsSeen);
 
     if (endPointsSeen == 3){
         for (var i = 0; i < endPointsSeen; i++) {
@@ -31,10 +29,10 @@ function getHttpRequest(srcId, targetUrl, callback) {
     var req = http.get(targetUrl, function(response){
         response.setEncoding('utf8');
         response.on('data', function(d) {
-            arrOut.push({'srcid': srcId, 'data': d})
+            arrOut.push(d)
         });
         response.on('end', function() {
-            callback(null, arrOut);
+            callback(null, arrOut, srcId);
         });
         response.on('error', function(err) {
             callback(err);
