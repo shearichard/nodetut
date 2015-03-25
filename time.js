@@ -6,7 +6,8 @@ var strftime = require('strftime')
 
 var server = net.createServer(function (socket) {
     var t = strftime('%Y-%m-%d %H:%M');
-    socket.end(t + '\n');
+    socket.write(t + '\n');
+    socket.end();
 })
 
 server.listen(process.argv[2])
