@@ -2,10 +2,6 @@ var fs = require('fs');
 var http = require('http');
 var map = require('through2-map')
 
-var uppercaseer = map(function (chunk) {
-      return chunk.slice(0, 10)
-})
-
 var server = http.createServer(function (req, res) {
     if (req.method != 'POST'){
         return res.end('send me a POST\n')
