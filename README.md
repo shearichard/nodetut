@@ -48,3 +48,10 @@ test-anything
 Execute 
 `test-anything`
 
+I'm just going to repeat the learnyounode instructions here because they're not included in the test-anything on screen text.
+
+» To print these instructions again, run: learnyounode print
+» To execute your program in a test environment, run: learnyounode run program.js
+» To verify your program, run: learnyounode verify program.js
+» For help run: learnyounode help
+
