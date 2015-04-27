@@ -40,3 +40,11 @@ Then I installed a 'nodeschool' module as follows:
 And then executed
 
 `learnyounode`
+
+
+====
+test-anything
+----
+Execute 
+`test-anything`
+
